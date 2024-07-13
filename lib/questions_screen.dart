@@ -11,9 +11,17 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionsScreen> {
+  var currentQuestionindex = 0;
+
+  void onAnswerQuestion() {
+    setState(() {
+      currentQuestionindex++;
+    });
+  }
+
   @override
   Widget build(context) {
-    final currenQuestion = questions[0];
+    final currenQuestion = questions[currentQuestionindex];
     return Center(
       child: Container(
         margin: EdgeInsets.all(50),
@@ -23,18 +31,18 @@ class _QuestionPageState extends State<QuestionsScreen> {
           children: [
             Text(
               currenQuestion.text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 30,
                 color: Colors.white,
               ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
-            ...currenQuestion.answers.map((answers) {
+            ...currenQuestion.getShuffledAnswer().map((answers) {
               return Container(
                 margin: const EdgeInsets.only(top: 15),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: onAnswerQuestion,
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 164, 109, 231),
                     foregroundColor: const Color.fromARGB(255, 255, 255, 255),
@@ -44,8 +52,9 @@ class _QuestionPageState extends State<QuestionsScreen> {
                     ),
                   ),
                   child: Text(
-                    currenQuestion.answers[0],
-                    style: TextStyle(
+                    answers,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
                       fontSize: 15,
                     ),
                   ),
