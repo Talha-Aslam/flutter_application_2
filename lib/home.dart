@@ -34,7 +34,13 @@ class HomePage extends StatelessWidget {
             foregroundColor: Colors.white,
           ),
           icon: const Icon(Icons.arrow_right_alt_rounded),
-          label: const Text("Start Quiz"),
+          label: const Text(
+            "Start Quiz",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+            ),
+          ),
         ),
       ],
     );
