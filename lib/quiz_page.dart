@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/data/question_list.dart';
 import 'package:flutter_application_2/home.dart';
 import 'package:flutter_application_2/questions_screen.dart';
 
@@ -12,7 +13,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   Widget? activescreen;
-  var selectedAnswersList = [];
+  List<String> selectedAnswersList = [];
 
   @override
   void initState() {
@@ -28,6 +29,13 @@ class _QuizPageState extends State<QuizPage> {
 
   void choseAnswer(String answer) {
     selectedAnswersList.add(answer);
+
+    if (selectedAnswersList.length == questions.length) {
+      setState(() {
+        selectedAnswersList = [];
+        activescreen = HomePage(changeScreen);
+      });
+    }
   }
 
   @override
