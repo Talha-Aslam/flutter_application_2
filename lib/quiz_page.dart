@@ -12,6 +12,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   Widget? activescreen;
+  var selectedAnswersList = [];
 
   @override
   void initState() {
@@ -21,8 +22,12 @@ class _QuizPageState extends State<QuizPage> {
 
   void changeScreen() {
     setState(() {
-      activescreen = const QuestionsScreen();
+      activescreen = QuestionsScreen(choseAnswer);
     });
+  }
+
+  void choseAnswer(String answer) {
+    selectedAnswersList.add(answer);
   }
 
   @override
@@ -34,6 +39,8 @@ class _QuizPageState extends State<QuizPage> {
           alignment: Alignment.center,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
+              // begin: Alignment.topLeft,
+              // end: Alignment.bottomRight,
               colors: [
                 Colors.purple,
                 Colors.blue,

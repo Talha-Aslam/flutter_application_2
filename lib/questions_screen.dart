@@ -3,7 +3,9 @@ import 'package:flutter_application_2/data/question_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen(this.onSelectAnswer, {super.key});
+
+  final void Function(String answer) onSelectAnswer;
 
   @override
   State<QuestionsScreen> createState() {
@@ -14,7 +16,8 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionPageState extends State<QuestionsScreen> {
   var currentQuestionindex = 0;
 
-  void onAnswerQuestion() {
+  void onAnswerQuestion(String selectedanswer) {
+    widget.onSelectAnswer(selectedanswer);
     setState(() {
       currentQuestionindex++;
     });
@@ -25,7 +28,7 @@ class _QuestionPageState extends State<QuestionsScreen> {
     final currenQuestion = questions[currentQuestionindex];
     return Center(
       child: Container(
-        margin: EdgeInsets.all(50),
+        margin: const EdgeInsets.all(50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -33,7 +36,7 @@ class _QuestionPageState extends State<QuestionsScreen> {
             Text(
               currenQuestion.text,
               style: GoogleFonts.lato(
-                color: Color.fromARGB(255, 213, 182, 236),
+                color: const Color.fromARGB(255, 213, 182, 236),
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
@@ -44,7 +47,9 @@ class _QuestionPageState extends State<QuestionsScreen> {
               return Container(
                 margin: const EdgeInsets.only(top: 15),
                 child: ElevatedButton(
-                  onPressed: onAnswerQuestion,
+                  onPressed: () {
+                    onAnswerQuestion(answers);
+                  },
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 164, 109, 231),
                     foregroundColor: const Color.fromARGB(255, 255, 255, 255),
