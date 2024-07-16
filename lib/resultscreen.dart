@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/data/question_list.dart';
 
 class Resultscreen extends StatelessWidget {
   const Resultscreen(
@@ -6,6 +8,21 @@ class Resultscreen extends StatelessWidget {
 
   final List<String> chosenAnswers;
   final void Function() restartQuiz;
+
+  List<Map<String, Object>> getSummary() {
+    final List<Map<String, Object>> summary = [];
+
+    for (var i = 0; i < chosenAnswers.length; i++) {
+      summary.add({
+        'question_index': questions.length,
+        'questions': questions[i].text,
+        'answer': questions[i].answers[0],
+        'selectedAnswerlength': chosenAnswers.length,
+        'selectedAnswer': chosenAnswers[i],
+      });
+    }
+    return summary;
+  }
 
   @override
   Widget build(context) {
@@ -15,7 +32,7 @@ class Resultscreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text(
-            'You have answered X out of Y questions',
+            'You have answered x out of Y questions',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 30.0,
