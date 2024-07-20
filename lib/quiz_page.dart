@@ -33,11 +33,17 @@ class _QuizPageState extends State<QuizPage> {
 
     if (selectedAnswersList.length == questions.length) {
       setState(() {
-        selectedAnswersList = [];
         activescreen = Resultscreen(
-            restartQuiz: changeScreen, chosenAnswers: selectedAnswersList);
+            restartQuiz: restartQuiz, chosenAnswers: selectedAnswersList);
       });
     }
+  }
+
+  void restartQuiz() {
+    setState(() {
+      selectedAnswersList = [];
+      activescreen = QuestionsScreen(choseAnswer);
+    });
   }
 
   @override
@@ -50,10 +56,10 @@ class _QuizPageState extends State<QuizPage> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               // begin: Alignment.topLeft,
-              // end: Alignment.bottomRight,
+              end: Alignment.bottomLeft,
               colors: [
-                Colors.purple,
-                Colors.blue,
+                Color.fromARGB(255, 177, 14, 206),
+                Color.fromARGB(255, 76, 162, 233),
               ],
             ),
           ),

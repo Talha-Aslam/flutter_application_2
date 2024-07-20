@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/data/question_list.dart';
+import 'package:flutter_application_2/question_summary.dart';
 
 class Resultscreen extends StatelessWidget {
   const Resultscreen(
@@ -13,7 +14,7 @@ class Resultscreen extends StatelessWidget {
 
     for (var i = 0; i < chosenAnswers.length; i++) {
       summary.add({
-        'question_index': questions.length,
+        'question_index': i,
         'questions': questions[i].text,
         'answer': questions[i].answers[0],
         'selectedAnswerlength': chosenAnswers.length,
@@ -25,26 +26,32 @@ class Resultscreen extends StatelessWidget {
 
   @override
   Widget build(context) {
+    final summarydata = getSummary();
+    final numTotalQuestions = questions.length;
+    final numAnswerdQuestion = summarydata.where((data) {
+      return data['answer'] == data['selectedAnswer'];
+    }).length;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
-            'You have answered x out of Y questions',
+          Text(
+            'You have answered $numAnswerdQuestion corrects out of $numTotalQuestions Questions',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
+              color: Color.fromARGB(255, 201, 198, 240),
               fontSize: 30.0,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 20),
-          Text("list"),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
+          QuestionSummary(summarydata),
+          const SizedBox(height: 40),
           ElevatedButton.icon(
             onPressed: restartQuiz,
             icon: const Icon(Icons.restart_alt_outlined),
-            label: Text(
+            label: const Text(
               "Restart",
             ),
           ),

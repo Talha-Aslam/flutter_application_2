@@ -52,4 +52,49 @@ final questions = [
       'By calling updateState()',
     ],
   ),
+  QuizQuestions(
+    'What programming language is used to write Flutter apps?',
+    [
+      'Dart',
+      'JavaScript',
+      'Python',
+      'Swift',
+    ],
+  ),
+  QuizQuestions(
+    'Which widget is used for repeating a single child along a given axis?',
+    [
+      'ListView',
+      'Column',
+      'Row',
+      'Stack',
+    ],
+  ),
+  QuizQuestions(
+    'What is the purpose of a StatefulWidget in Flutter?',
+    [
+      'To create a widget that has mutable state',
+      'To create a widget that has immutable state',
+      'To create a widget that is stateless',
+      'To create a widget that can only be used once',
+    ],
+  ),
+  QuizQuestions(
+    'Which method is used to build the UI of a StatelessWidget?',
+    [
+      'build',
+      'create',
+      'render',
+      'compose',
+    ],
+  ),
+  QuizQuestions(
+    'What is the function of the `setState` method in a StatefulWidget?',
+    [
+      'To update the state of the widget',
+      'To initialize the widget',
+      'To render the widget',
+      'To build the widget',
+    ],
+  ),
 ];
